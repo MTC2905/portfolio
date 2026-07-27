@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ========================
+       THAY TIÊU ĐỀ WEBSITE
+       ======================== -->
+  <title>Trần Chính Mạnh | Embedded Systems Engineer & Aspiring AI Engineer</title>
+
+  <!-- ========================
+       THAY MÔ TẢ SEO
+       ======================== -->
+  <meta
+    name="description"
+    content="Portfolio của Trần Chính Mạnh – Embedded Systems Engineer, Automation Engineer và Aspiring AI Engineer với kinh nghiệm về ESP32, STM32, PLC, IoT và Industrial Automation."
+  />
+  <meta
+    name="keywords"
+    content="Trần Chính Mạnh, Embedded Systems Engineer, Automation Engineer, AI Engineer, ESP32, STM32, PLC, IoT, Machine Learning"
+  />
+  <meta name="author" content="Trần Chính Mạnh" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- ========================
+       FONT GOOGLE
+       ======================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- ========================
+       FONT AWESOME
+       ======================== -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <style>
+    /* ========================
+       BIẾN MÀU VÀ THIẾT LẬP GỐC
+       ======================== */
+    :root {
+      --bg: #ffffff;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-solid: #f6f6f6;
+      --text: #111111;
+      --muted: #666666;
+      --line: rgba(17, 17, 17, 0.09);
+      --accent: #ff6b00;
+      --accent-soft: rgba(255, 107, 0, 0.12);
+      --shadow: 0 20px 60px rgba(17, 17, 17, 0.08);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --container: 1180px;
+    }
+
+    /* ========================
+       MÀU DARK MODE
+       ======================== */
+    body.dark {
+      --bg: #0c0c0d;
+      --surface: rgba(21, 21, 23, 0.76);
+      --surface-solid: #151517;
+      --text: #ffffff;
+      --muted: #b6b6b6;
+      --line: rgba(255, 255, 255, 0.1);
+      --accent-soft: rgba(255, 107, 0, 0.15);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ========================
+       RESET CSS
+       ======================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 0, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(255, 107, 0, 0.45);
+      outline-offset: 3px;
+    }
+
+    /* ========================
+       CLASS DÙNG CHUNG
+       ======================== */
+    .container {
+      width: min(100% - 32px, var(--container));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-heading {
+      margin-bottom: 48px;
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 12px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .glass-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: var(--radius-lg);
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(255, 107, 0, 0.28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 38px rgba(255, 107, 0, 0.38);
+    }
+
+    /* ========================
+       NAVBAR
+       ======================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* ========================
+       HERO
+       ======================== */
+    .hero {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(3rem, 7vw, 6.7rem);
+      letter-spacing: -0.065em;
+      margin-bottom: 24px;
+    }
+
+    .hero-role {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .role-pill {
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .journey-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 34px;
+    }
+
+    .journey-line i {
+      color: var(--accent);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .portrait-shell {
+      position: relative;
+      width: min(100%, 420px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 14px;
+      background: linear-gradient(145deg, rgba(255, 107, 0, 0.25), transparent 55%);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-shell img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .portrait-orbit {
+      position: absolute;
+      inset: -26px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 107, 0, 0.32);
+      animation: rotate 20s linear infinite;
+    }
+
+    .portrait-badge {
+      position: absolute;
+      right: -12px;
+      bottom: 34px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ========================
+       GIỚI THIỆU
+       ======================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+    }
+
+    .about-points {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .about-point {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .about-point i {
+      color: var(--accent);
+      margin-top: 5px;
+    }
+
+    /* ========================
+       HỌC VẤN
+       ======================== */
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+    }
+
+    .education-card {
+      padding: 34px;
+    }
+
+    .education-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .education-meta {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .gpa-box {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .training-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .training-item {
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+    }
+
+    .training-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .mini-list {
+      padding-left: 18px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ========================
+       KỸ NĂNG
+       ======================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card {
+      padding: 26px;
+      min-height: 220px;
+    }
+
+    .skill-card i {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    /* ========================
+       PROJECTS
+       ======================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .project-card {
+      overflow: hidden;
+    }
+
+    .project-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-body {
+      padding: 28px;
+    }
+
+    .project-timeline {
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+    }
+
+    .project-detail {
+      margin-bottom: 15px;
+    }
+
+    .project-detail strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .project-detail p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .project-tech span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* ========================
+       KINH NGHIỆM LÀM VIỆC
+       ======================== */
+    .timeline {
+      position: relative;
+      margin-left: 14px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 54px;
+      margin-bottom: 30px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 7px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    .timeline-card {
+      padding: 28px;
+    }
+
+    .timeline-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-company {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .timeline-card p {
+      color: var(--muted);
+    }
+
+    /* ========================
+       GIẢI THƯỞNG VÀ CHỨNG CHỈ
+       ======================== */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .simple-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .simple-card {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .simple-card i {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .simple-card h3 {
+      font-size: 1rem;
+    }
+
+    /* ========================
+       LIÊN HỆ
+       ======================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+    }
+
+    .contact-info,
+    .contact-form {
+      padding: 34px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      margin-top: 5px;
+      width: 20px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--surface-solid);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 15px;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-message {
+      color: var(--muted);
+      min-height: 24px;
+      font-size: 0.9rem;
+    }
+
+    /* ========================
+       FOOTER
+       ======================== */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-inner p {
+      color: var(--muted);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-links a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========================
+       NÚT BACK TO TOP
+       ======================== */
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(255, 107, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: 0.3s ease;
+      z-index: 900;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ========================
+       ANIMATION KHI SCROLL
+       ======================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================
+       RESPONSIVE TABLET
+       ======================== */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .about-grid,
+      .education-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .portrait-shell {
+        width: min(78vw, 360px);
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid,
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========================
+       RESPONSIVE MOBILE
+       ======================== */
+    @media (max-width: 820px) {
+      .menu-btn {
+        display: grid;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 74px 16px auto 16px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.25s ease;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 10px 6px;
+      }
+
+      .section {
+        padding: 84px 0;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.8rem, 16vw, 4.8rem);
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ========================
+       GIẢM CHUYỂN ĐỘNG CHO NGƯỜI DÙNG NHẠY CẢM
+       ======================== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========================
+       THANH ĐIỀU HƯỚNG
+       ======================== -->
+  <header class="navbar" aria-label="Thanh điều hướng chính">
+    <div class="container nav-inner">
+      <!-- ========================
+           THAY TÊN VIẾT TẮT / LOGO CHỮ
+           ======================== -->
+      <a href="#home" class="brand" aria-label="Về trang đầu">MTC<span>.</span></a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">Giới thiệu</a></li>
+          <li><a href="#education">Học vấn</a></li>
+          <li><a href="#skills">Kỹ năng</a></li>
+          <li><a href="#projects">Dự án</a></li>
+          <li><a href="#experience">Kinh nghiệm</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Chuyển chế độ sáng tối">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="icon-btn menu-btn" id="menuToggle" aria-label="Mở menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================
+         HERO
+         ======================== -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">
+            <i class="fa-solid fa-microchip"></i>
+            Engineering Portfolio
+          </span>
+
+          <!-- ========================
+               THAY TÊN TẠI ĐÂY
+               ======================== -->
+          <h1>TRẦN CHÍNH <span class="accent">MẠNH</span></h1>
+
+          <!-- ========================
+               THAY CÁC VỊ TRÍ CHUYÊN MÔN TẠI ĐÂY
+               ======================== -->
+          <div class="hero-role" aria-label="Các vị trí chuyên môn">
+            <span class="role-pill">Embedded Systems Engineer</span>
+            <span class="role-pill">Automation Engineer</span>
+            <span class="role-pill">Aspiring AI Engineer</span>
+          </div>
+
+          <!-- ========================
+               THAY TAGLINE TẠI ĐÂY
+               ======================== -->
+          <p class="hero-tagline">
+            Building Intelligent Systems from Embedded Systems to Artificial Intelligence.
+          </p>
+
+          <!-- ========================
+               THAY HÀNH TRÌNH NGHỀ NGHIỆP TẠI ĐÂY
+               ======================== -->
+          <div class="journey-line">
+            <span>Automation Engineer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Embedded Systems Engineer</span>
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>Aspiring AI Engineer</span>
+          </div>
+
+          <a class="btn btn-primary" href="#contact">
+            <i class="fa-regular fa-paper-plane"></i>
+            Liên hệ
+          </a>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="portrait-shell">
+            <div class="portrait-orbit" aria-hidden="true"></div>
+
+            <!-- ========================
+                 THAY ẢNH ĐẠI DIỆN TẠI ĐÂY
+                 ======================== -->
+            <img
+              src="avatar.jpg"
+              alt="Ảnh đại diện của Trần Chính Mạnh"
+            />
+            <!-- Thay ảnh đại diện tại đây -->
+
+            <div class="portrait-badge glass-card">
+              <i class="fa-solid fa-code"></i>
+              Embedded → AI
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         GIỚI THIỆU
+         ======================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">01 / Giới thiệu</span>
+          <h2>Nền tảng kỹ thuật, tư duy hệ thống và định hướng AI.</h2>
+          <p>
+            Hành trình phát triển từ điều khiển tự động, hệ thống nhúng đến các giải pháp trí tuệ nhân tạo.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card glass-card reveal">
+            <h3>Giới thiệu bản thân</h3>
+
+            <!-- ========================
+                 THAY THÔNG TIN GIỚI THIỆU
+                 ======================== -->
+            <p>
+              Tôi là kỹ sư Điều khiển và Tự động hóa với nền tảng về Embedded Systems,
+              IoT và Industrial Automation. Tôi có kinh nghiệm phát triển các hệ thống
+              sử dụng ESP32, STM32 và PLC. Hiện tôi đang chuyển hướng sang lĩnh vực
+              Trí tuệ nhân tạo với mong muốn xây dựng các giải pháp AI có khả năng
+              giải quyết các bài toán thực tế trong nhiều lĩnh vực khác nhau.
+            </p>
+
+            <div class="about-points">
+              <div class="about-point">
+                <i class="fa-solid fa-check"></i>
+                <span>Nền tảng kỹ thuật về điều khiển, lập trình nhúng và tự động hóa.</span>
+              </div>
+              <div class="about-point">
+                <i class="fa-solid fa-check"></i>
+                <span>Kinh nghiệm làm việc với phần cứng, firmware và hệ thống công nghiệp.</span>
+              </div>
+              <div class="about-point">
+                <i class="fa-solid fa-check"></i>
+                <span>Tư duy giải quyết vấn đề theo hướng hệ thống và thực tiễn.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="about-card glass-card reveal">
+            <h3>Mục tiêu nghề nghiệp</h3>
+
+            <!-- ========================
+                 THAY MỤC TIÊU NGHỀ NGHIỆP
+                 ======================== -->
+            <p>
+              Mong muốn phát triển các giải pháp AI có khả năng giải quyết các bài toán
+              thực tế và tạo ra giá trị cho doanh nghiệp cũng như cộng đồng.
+            </p>
+
+            <div class="about-points">
+              <div class="about-point">
+                <i class="fa-solid fa-brain"></i>
+                <span>Tăng cường năng lực Python, Machine Learning và Deep Learning.</span>
+              </div>
+              <div class="about-point">
+                <i class="fa-solid fa-gears"></i>
+                <span>Kết hợp AI với Embedded Systems, IoT và Automation.</span>
+              </div>
+              <div class="about-point">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>Liên tục tự học, thử nghiệm và xây dựng sản phẩm có khả năng ứng dụng.</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         HỌC VẤN
+         ======================== -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">02 / Học vấn</span>
+          <h2>Nền tảng học thuật và đào tạo chuyên sâu.</h2>
+        </div>
+
+        <div class="education-grid">
+          <article class="education-card glass-card reveal">
+            <!-- ========================
+                 THAY THÔNG TIN HỌC VẤN
+                 ======================== -->
+            <h3>University of Transport Ho Chi Minh City</h3>
+            <p class="education-meta">Bachelor of Engineering · 2021–2025</p>
+            <p><strong>Industrial Automation and Control Engineering</strong></p>
+            <div class="gpa-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+              GPA 3.38 / 4.0
+            </div>
+          </article>
+
+          <article class="education-card glass-card reveal">
+            <h3>Đào tạo bổ sung</h3>
+
+            <div class="training-list">
+              <!-- ========================
+                   THAY THÔNG TIN KHÓA HỌC C/C++
+                   ======================== -->
+              <div class="training-item">
+                <strong>FULL HOUSE CLUB</strong>
+                <span>C/C++</span>
+              </div>
+
+              <!-- ========================
+                   THAY THÔNG TIN KHÓA HỌC EMBEDDED
+                   ======================== -->
+              <div class="training-item">
+                <strong>IMIC Technology</strong>
+                <span>Embedded Systems & IoT</span>
+                <ul class="mini-list">
+                  <li>STM32 Programming</li>
+                  <li>Register-Level Programming</li>
+                  <li>Peripheral Communication</li>
+                  <li>Embedded System Design</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         KỸ NĂNG
+         ======================== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">03 / Kỹ năng</span>
+          <h2>Năng lực kỹ thuật theo từng nhóm chuyên môn.</h2>
+        </div>
+
+        <div class="skills-grid">
+          <!-- ========================
+               THAY KỸ NĂNG LẬP TRÌNH
+               ======================== -->
+          <article class="skill-card glass-card reveal">
+            <i class="fa-solid fa-code"></i>
+            <h3>Programming</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">Python</span>
+            </div>
+          </article>
+
+          <!-- ========================
+               THAY KỸ NĂNG EMBEDDED
+               ======================== -->
+          <article class="skill-card glass-card reveal">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>Embedded</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">ESP32</span>
+              <span class="skill-tag">STM32</span>
+              <span class="skill-tag">Arduino</span>
+            </div>
+          </article>
+
+          <!-- ========================
+               THAY KỸ NĂNG INDUSTRIAL
+               ======================== -->
+          <article class="skill-card glass-card reveal">
+            <i class="fa-solid fa-industry"></i>
+            <h3>Industrial</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">PLC</span>
+              <span class="skill-tag">SCADA</span>
+              <span class="skill-tag">Industrial Network</span>
+            </div>
+          </article>
+
+          <!-- ========================
+               THAY KỸ NĂNG AI
+               ======================== -->
+          <article class="skill-card glass-card reveal">
+            <i class="fa-solid fa-brain"></i>
+            <h3>AI</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Machine Learning</span>
+              <span class="skill-tag">Deep Learning</span>
+              <span class="skill-tag">OpenCV</span>
+              <span class="skill-tag">LLM</span>
+            </div>
+          </article>
+
+          <!-- ========================
+               THAY CÔNG CỤ PHÁT TRIỂN
+               ======================== -->
+          <article class="skill-card glass-card reveal">
+            <i class="fa-solid fa-terminal"></i>
+            <h3>Development Environment</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">PlatformIO</span>
+              <span class="skill-tag">STM32CubeIDE</span>
+              <span class="skill-tag">Arduino IDE</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         PROJECTS
+         ======================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">04 / Projects</span>
+          <h2>Dự án thực tế về Embedded, Automation và hệ thống kỹ thuật.</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- ========================
+               THÊM DỰ ÁN MỚI
+               ======================== -->
+          <article class="project-card glass-card reveal">
+            <!-- ========================
+                 THAY ẢNH DỰ ÁN
+                 ======================== -->
+            <img
+              src="https://placehold.co/1200x750/111111/FFFFFF?text=Home+Security+System"
+              alt="Ảnh dự án Three-Layer Home Security System"
+            />
+
+            <div class="project-body">
+              <div class="project-timeline">Timeline: 2024</div>
+              <h3>Three-Layer Home Security System</h3>
+
+              <!-- ========================
+                   THAY MÔ TẢ DỰ ÁN
+                   ======================== -->
+              <div class="project-detail">
+                <strong>Overview</strong>
+                <p>
+                  Hệ thống an ninh gia đình nhiều lớp, kết hợp cảm biến, cảnh báo và
+                  giám sát để tăng tính an toàn cho không gian dân dụng.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Technology</strong>
+                <p>ESP32, IoT sensors, embedded communication, alarm system.</p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Responsibilities</strong>
+                <p>
+                  Thiết kế kiến trúc hệ thống, lập trình firmware, tích hợp cảm biến,
+                  kiểm thử và xử lý tình huống cảnh báo.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Result</strong>
+                <p>
+                  Hoàn thiện prototype có khả năng phát hiện sự kiện và kích hoạt cảnh báo theo nhiều lớp.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <span>ESP32</span>
+                <span>IoT</span>
+                <span>Embedded C</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM DỰ ÁN MỚI
+               ======================== -->
+          <article class="project-card glass-card reveal">
+            <!-- ========================
+                 THAY ẢNH DỰ ÁN
+                 ======================== -->
+            <img
+              src="https://placehold.co/1200x750/191919/FFFFFF?text=Secure+Firmware+Update"
+              alt="Ảnh dự án Secure Firmware Update using STM32"
+            />
+
+            <div class="project-body">
+              <div class="project-timeline">Timeline: 2024</div>
+              <h3>Secure Firmware Update using STM32</h3>
+
+              <!-- ========================
+                   THAY MÔ TẢ DỰ ÁN
+                   ======================== -->
+              <div class="project-detail">
+                <strong>Overview</strong>
+                <p>
+                  Giải pháp cập nhật firmware an toàn cho vi điều khiển STM32 nhằm tăng
+                  độ tin cậy và giảm rủi ro trong quá trình cập nhật hệ thống.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Technology</strong>
+                <p>STM32, Bootloader, Embedded C, Peripheral Communication.</p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Responsibilities</strong>
+                <p>
+                  Xây dựng quy trình cập nhật, kiểm tra tính hợp lệ của firmware, xử lý
+                  lỗi và kiểm thử trên vi điều khiển.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Result</strong>
+                <p>
+                  Tạo được quy trình cập nhật firmware có cơ chế kiểm tra và phục hồi cơ bản.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <span>STM32</span>
+                <span>Bootloader</span>
+                <span>Firmware</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM DỰ ÁN MỚI
+               ======================== -->
+          <article class="project-card glass-card reveal">
+            <!-- ========================
+                 THAY ẢNH DỰ ÁN
+                 ======================== -->
+            <img
+              src="https://placehold.co/1200x750/222222/FFFFFF?text=PLC+Pig+Farming"
+              alt="Ảnh dự án PLC Automated Pig Farming System"
+            />
+
+            <div class="project-body">
+              <div class="project-timeline">Timeline: 2023</div>
+              <h3>PLC Automated Pig Farming System</h3>
+
+              <!-- ========================
+                   THAY MÔ TẢ DỰ ÁN
+                   ======================== -->
+              <div class="project-detail">
+                <strong>Overview</strong>
+                <p>
+                  Mô hình tự động hóa chăn nuôi sử dụng PLC để điều khiển các quy trình
+                  vận hành theo điều kiện môi trường và lịch trình.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Technology</strong>
+                <p>PLC, SCADA, sensors, actuators, industrial control.</p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Responsibilities</strong>
+                <p>
+                  Lập trình PLC, thiết kế logic điều khiển, kết nối thiết bị và xây dựng giao diện giám sát.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Result</strong>
+                <p>
+                  Hoàn thiện mô hình có khả năng giám sát và tự động hóa các tác vụ vận hành chính.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <span>PLC</span>
+                <span>SCADA</span>
+                <span>Automation</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM DỰ ÁN MỚI
+               ======================== -->
+          <article class="project-card glass-card reveal">
+            <!-- ========================
+                 THAY ẢNH DỰ ÁN
+                 ======================== -->
+            <img
+              src="https://placehold.co/1200x750/292929/FFFFFF?text=LED+Matrix+Controller"
+              alt="Ảnh dự án LED Matrix Smart Controller"
+            />
+
+            <div class="project-body">
+              <div class="project-timeline">Timeline: 2023</div>
+              <h3>LED Matrix Smart Controller</h3>
+
+              <!-- ========================
+                   THAY MÔ TẢ DỰ ÁN
+                   ======================== -->
+              <div class="project-detail">
+                <strong>Overview</strong>
+                <p>
+                  Bộ điều khiển LED Matrix thông minh cho phép hiển thị nội dung,
+                  hiệu ứng và điều khiển theo kịch bản.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Technology</strong>
+                <p>ESP32, Arduino framework, LED Matrix, wireless control.</p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Responsibilities</strong>
+                <p>
+                  Phát triển firmware, tối ưu hiệu ứng hiển thị, xử lý giao tiếp và kiểm thử hệ thống.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Result</strong>
+                <p>
+                  Xây dựng prototype ổn định với khả năng điều khiển và hiển thị linh hoạt.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <span>ESP32</span>
+                <span>LED Matrix</span>
+                <span>Wireless</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM DỰ ÁN MỚI
+               ======================== -->
+          <article class="project-card glass-card reveal">
+            <!-- ========================
+                 THAY ẢNH DỰ ÁN
+                 ======================== -->
+            <img
+              src="https://placehold.co/1200x750/303030/FFFFFF?text=3D+Printing+Experience"
+              alt="Ảnh dự án 3D Printing Experience"
+            />
+
+            <div class="project-body">
+              <div class="project-timeline">Timeline: 2022–2024</div>
+              <h3>3D Printing Experience</h3>
+
+              <!-- ========================
+                   THAY MÔ TẢ DỰ ÁN
+                   ======================== -->
+              <div class="project-detail">
+                <strong>Overview</strong>
+                <p>
+                  Kinh nghiệm thiết kế, hiệu chỉnh và vận hành quy trình in 3D phục vụ
+                  prototype kỹ thuật và sản phẩm thử nghiệm.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Technology</strong>
+                <p>CAD, slicing workflow, FDM printing, prototype validation.</p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Responsibilities</strong>
+                <p>
+                  Chuẩn bị mô hình, tối ưu thông số in, xử lý lỗi và đánh giá chất lượng sản phẩm.
+                </p>
+              </div>
+
+              <div class="project-detail">
+                <strong>Result</strong>
+                <p>
+                  Tích lũy kinh nghiệm thực hành về prototyping và quy trình hoàn thiện sản phẩm kỹ thuật.
+                </p>
+              </div>
+
+              <div class="project-tech">
+                <span>CAD</span>
+                <span>FDM</span>
+                <span>Prototyping</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         KINH NGHIỆM LÀM VIỆC
+         ======================== -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">05 / Kinh nghiệm</span>
+          <h2>Hành trình nghề nghiệp theo đúng trình tự thời gian.</h2>
+        </div>
+
+        <div class="timeline">
+          <!-- ========================
+               THÊM KINH NGHIỆM
+               ======================== -->
+          <article class="timeline-item reveal">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-card glass-card">
+              <h3>Intern</h3>
+              <div class="timeline-company">VinFast</div>
+              <p>
+                Hỗ trợ các công việc kỹ thuật, làm quen với môi trường công nghiệp,
+                quy trình vận hành và tiêu chuẩn kỹ thuật trong doanh nghiệp.
+              </p>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM KINH NGHIỆM
+               ======================== -->
+          <article class="timeline-item reveal">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-card glass-card">
+              <h3>Technical Staff</h3>
+              <div class="timeline-company">NamVietETC</div>
+              <p>
+                Thực hiện các công việc kỹ thuật liên quan đến thiết bị, kiểm tra,
+                vận hành và hỗ trợ xử lý vấn đề trong hệ thống.
+              </p>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM KINH NGHIỆM
+               ======================== -->
+          <article class="timeline-item reveal">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-card glass-card">
+              <h3>Robotics Engineer</h3>
+              <div class="timeline-company">SaiGon STEM</div>
+              <p>
+                Phát triển và hướng dẫn các mô hình robotics, lập trình điều khiển,
+                tích hợp phần cứng và hỗ trợ hoạt động STEM.
+              </p>
+            </div>
+          </article>
+
+          <!-- ========================
+               THÊM KINH NGHIỆM
+               ======================== -->
+          <article class="timeline-item reveal">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-card glass-card">
+              <h3>Sales Engineer</h3>
+              <div class="timeline-company">VNTECHCO · Hiện tại</div>
+              <p>
+                Kết hợp kiến thức kỹ thuật và tư duy tư vấn để đề xuất giải pháp,
+                hỗ trợ khách hàng và phối hợp triển khai sản phẩm kỹ thuật.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         GIẢI THƯỞNG
+         ======================== -->
+    <section class="section" id="awards">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">06 / Giải thưởng</span>
+          <h2>Thành tích học tập và hoạt động chuyên môn.</h2>
+        </div>
+
+        <div class="simple-list">
+          <!-- ========================
+               THÊM GIẢI THƯỞNG
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-award"></i>
+            <h3>University Scholarship</h3>
+          </article>
+
+          <!-- ========================
+               THÊM GIẢI THƯỞNG
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>Top 8 MCR Competition</h3>
+          </article>
+
+          <!-- ========================
+               THÊM GIẢI THƯỞNG
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-robot"></i>
+            <h3>Robot Meechabot Competition</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         CHỨNG CHỈ
+         ======================== -->
+    <section class="section" id="certificates">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">07 / Chứng chỉ</span>
+          <h2>Đào tạo kỹ thuật và nền tảng phát triển AI.</h2>
+        </div>
+
+        <div class="simple-list">
+          <!-- ========================
+               THÊM CHỨNG CHỈ
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-certificate"></i>
+            <h3>C/C++</h3>
+          </article>
+
+          <!-- ========================
+               THÊM CHỨNG CHỈ
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-certificate"></i>
+            <h3>Embedded Systems</h3>
+          </article>
+
+          <!-- ========================
+               THÊM CHỨNG CHỈ
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-certificate"></i>
+            <h3>IoT</h3>
+          </article>
+
+          <!-- ========================
+               THÊM CHỨNG CHỈ AI TẠI ĐÂY
+               ======================== -->
+          <article class="simple-card glass-card reveal">
+            <i class="fa-solid fa-brain"></i>
+            <h3>AI Certificates — Placeholder</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         LIÊN HỆ
+         ======================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">08 / Liên hệ</span>
+          <h2>Kết nối để trao đổi về kỹ thuật, sản phẩm và AI.</h2>
+        </div>
+
+        <div class="contact-grid">
+          <article class="contact-info glass-card reveal">
+            <h3>Thông tin liên hệ</h3>
+
+            <!-- ========================
+                 THAY THÔNG TIN LIÊN HỆ
+                 ======================== -->
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <strong>Email</strong><br />
+                <!-- ========================
+                     THAY EMAIL
+                     ======================== -->
+                <a href="mailto:manhtc29@gmail.com">manhtc29@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <strong>Phone</strong><br />
+                <!-- ========================
+                     THAY SỐ ĐIỆN THOẠI
+                     ======================== -->
+                <a href="tel:+8496322123">(+84) 96322123</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Location</strong><br />
+                <!-- ========================
+                     THAY ĐỊA CHỈ
+                     ======================== -->
+                <span>Ho Chi Minh City, Vietnam</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-brands fa-facebook-f"></i>
+              <div>
+                <strong>Facebook</strong><br />
+                <!-- ========================
+                     THAY LINK FACEBOOK
+                     ======================== -->
+                <a href="https://www.facebook.com/manh.tranchinh.29" target="_blank" rel="noreferrer">
+                  facebook.com/manh.tranchinh.29
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-brands fa-linkedin-in"></i>
+              <div>
+                <strong>LinkedIn</strong><br />
+                <!-- ========================
+                     THAY LINK LINKEDIN
+                     ======================== -->
+                <a href="https://www.linkedin.com/in/mtc29/" target="_blank" rel="noreferrer">
+                  linkedin.com/in/mtc29
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-brands fa-github"></i>
+              <div>
+                <strong>Github</strong><br />
+                <!-- ========================
+                     THAY LINK GITHUB
+                     ======================== -->
+                <a href="#" aria-label="Github placeholder">Github Placeholder</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="contact-form glass-card reveal">
+            <h3>Gửi tin nhắn</h3>
+
+            <!-- ========================
+                 FORM CHỈ DÙNG DEMO
+                 ======================== -->
+            <form id="contactForm" novalidate>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">Tên</label>
+                  <input id="name" name="name" type="text" placeholder="Nhập tên của bạn" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Số điện thoại</label>
+                  <input id="phone" name="phone" type="tel" placeholder="Nhập số điện thoại" />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Nội dung</label>
+                  <textarea id="message" name="message" placeholder="Nhập nội dung tin nhắn" required></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa-regular fa-paper-plane"></i>
+                  Gửi tin nhắn
+                </button>
+
+                <p class="form-message" id="formMessage" aria-live="polite"></p>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================
+       FOOTER
+       ======================== -->
+  <footer>
+    <div class="container footer-inner">
+      <!-- ========================
+           THAY NỘI DUNG COPYRIGHT
+           ======================== -->
+      <p>© <span id="currentYear"></span> Trần Chính Mạnh. All rights reserved.</p>
+
+      <div class="social-links" aria-label="Liên kết mạng xã hội">
+        <!-- ========================
+             THAY LINK FACEBOOK
+             ======================== -->
+        <a
+          href="https://www.facebook.com/manh.tranchinh.29"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Facebook"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <!-- ========================
+             THAY LINK LINKEDIN
+             ======================== -->
+        <a
+          href="https://www.linkedin.com/in/mtc29/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+        >
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+
+        <!-- ========================
+             THAY LINK GITHUB
+             ======================== -->
+        <a href="#" aria-label="Github placeholder">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================
+       NÚT QUAY LẠI ĐẦU TRANG
+       ======================== -->
+  <button class="back-to-top" id="backToTop" aria-label="Quay lại đầu trang">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    /* ========================
+       LẤY CÁC PHẦN TỬ CẦN DÙNG
+       ======================== */
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const backToTop = document.getElementById("backToTop");
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+    const currentYear = document.getElementById("currentYear");
+
+    /* ========================
+       HIỂN THỊ NĂM HIỆN TẠI
+       ======================== */
+    currentYear.textContent = new Date().getFullYear();
+
+    /* ========================
+       DARK MODE / LIGHT MODE
+       ======================== */
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      body.classList.add("dark");
+    }
+
+    function updateThemeIcon() {
+      const icon = themeToggle.querySelector("i");
+      const isDark = body.classList.contains("dark");
+
+      icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"
+      );
+    }
+
+    updateThemeIcon();
+
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      const activeTheme = body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("portfolio-theme", activeTheme);
+      updateThemeIcon();
+    });
+
+    /* ========================
+       MENU MOBILE
+       ======================== */
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      const isOpen = navLinks.classList.contains("open");
+
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.querySelector("i").className = isOpen
+        ? "fa-solid fa-xmark"
+        : "fa-solid fa-bars";
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.querySelector("i").className = "fa-solid fa-bars";
+      });
+    });
+
+    /* ========================
+       ANIMATION KHI SCROLL
+       ======================== */
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+
+    /* ========================
+       ĐÁNH DẤU MENU ĐANG XEM
+       ======================== */
+    const sections = document.querySelectorAll("main section[id]");
+    const navigationLinks = document.querySelectorAll(".nav-links a");
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            navigationLinks.forEach((link) => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === `#${entry.target.id}`
+              );
+            });
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -50% 0px",
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    /* ========================
+       BACK TO TOP
+       ======================== */
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 600);
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    /* ========================
+       FORM LIÊN HỆ DEMO
+       ======================== */
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!contactForm.checkValidity()) {
+        formMessage.textContent = "Vui lòng điền đầy đủ các trường bắt buộc.";
+        return;
+      }
+
+      formMessage.textContent =
+        "Đây là form demo. Vui lòng kết nối backend hoặc dịch vụ gửi email để sử dụng thật.";
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
